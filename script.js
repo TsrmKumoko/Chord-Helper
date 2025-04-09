@@ -25,7 +25,19 @@ const activeNotes = new Set();
 
 // 更新显示的音符
 function updateActiveNotes() {
-    const notes = Array.from(activeNotes);
+    // 定义音符顺序映射
+    const noteOrder = {
+        'C3': 0, 'C#3': 1, 'D3': 2, 'D#3': 3, 'E3': 4,
+        'F3': 5, 'F#3': 6, 'G3': 7, 'G#3': 8, 'A3': 9,
+        'A#3': 10, 'B3': 11, 'C4': 12, 'C#4': 13, 'D4': 14,
+        'D#4': 15, 'E4': 16, 'F4': 17, 'F#4': 18, 'G4': 19,
+        'G#4': 20, 'A4': 21, 'A#4': 22, 'B4': 23, 'C5': 24
+    };
+
+    // 获取音符数组并按照键盘顺序排序
+    const notes = Array.from(activeNotes).sort((a, b) => noteOrder[a] - noteOrder[b]);
+    
+    // 更新显示
     activeNotesDiv.innerHTML = notes
         .map(note => `<span class="note-tag">${note}</span>`)
         .join('');
@@ -37,6 +49,9 @@ function updateActiveNotes() {
             activeNotesDiv.innerHTML += ` = <span class="chord-tag">${chord[0]}</span>`;
         }
     }
+
+    // 根据是否有音符来设置清除按钮的禁用状态
+    clearBtn.disabled = notes.length === 0;
 }
 
 // 切换音符显示状态
@@ -121,4 +136,20 @@ muteBtn.addEventListener('click', () => {
     } else {
         synth.volume.value = 0;
     }
+});
+
+const clearBtn = document.getElementById('clear-btn');
+clearBtn.disabled = true;  // 设置初始状态为禁用
+
+clearBtn.addEventListener('click', () => {
+    // 清除所有激活的音符
+    activeNotes.clear();
+    // 释放所有按键的声音
+    synth.releaseAll();
+    // 移除所有键的激活状态
+    document.querySelectorAll('.key.active').forEach(key => {
+        key.classList.remove('active');
+    });
+    // 更新显示
+    updateActiveNotes();
 });

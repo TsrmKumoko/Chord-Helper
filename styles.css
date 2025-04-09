@@ -151,7 +151,7 @@ h1 {
     margin: 0;
 }
 
-.mute-btn {
+.tool-btn {
     width: 42px;
     height: 42px;
     border: 1px solid #e0e0e0;
@@ -167,16 +167,21 @@ h1 {
     margin: 0;
 }
 
-.mute-btn:focus {
+.tool-btn:focus {
     outline: none;  /* 确保在获得焦点时也不显示边框 */
     border: 1px solid #e0e0e0;  /* 保持原有边框样式 */
 }
 
-.mute-btn:hover {
+.tool-btn:hover {
     background: #f5f5f5;
 }
 
-.mute-btn.muted {
+.tool-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+#mute-btn.muted {
     background: #e0e0e0;
 }
 .chord-tag {
