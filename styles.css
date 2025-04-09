@@ -1,8 +1,44 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+
+h1 {
+    margin: 0 0 30px 0;
+    color: #333;
+}
+
 .piano {
     display: flex;
     justify-content: center;
     margin: 20px auto;
     padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.active-notes {
+    text-align: center;
+    margin: 0 auto 20px;
+    min-height: 24px;
+    font-size: 16px;
+    padding: 8px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 500px;
+    width: 70%;
+    background: white;
 }
 
 .key {
@@ -44,4 +80,29 @@
 /* 添加这个选择器来覆盖 C# 的标注 */
 .key[data-note*="#"]::after {
     content: none;
+}
+
+.active-notes {
+    text-align: center;
+    margin: 10px auto;
+    min-height: 24px;
+    font-size: 18px;
+    padding: 8px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 600px;
+    width: 80%;
+}
+
+.note-tag {
+    display: inline-block;
+    padding: 2px 8px;
+    margin: 0 4px;
+    background: #e0e0e0;
+    border-radius: 4px;
+    line-height: 1.2;
 }
