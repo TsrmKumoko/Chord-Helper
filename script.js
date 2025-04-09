@@ -107,3 +107,18 @@ document.addEventListener('keyup', (e) => {
         updateActiveNotes();
     }
 });
+
+const muteBtn = document.getElementById('mute-btn');
+let isMuted = false;
+
+muteBtn.addEventListener('click', () => {
+    isMuted = !isMuted;
+    muteBtn.textContent = isMuted ? '🔇' : '🔊';
+    muteBtn.classList.toggle('muted');
+    
+    if (isMuted) {
+        synth.volume.value = -Infinity;
+    } else {
+        synth.volume.value = 0;
+    }
+});
