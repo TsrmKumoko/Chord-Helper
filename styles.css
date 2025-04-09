@@ -64,17 +64,24 @@ h1 {
 }
 
 .black-key:active, .black-key.active {
-    background: #333;
+    background: #555;
 }
 
-.key[data-note^="C"]::after {
-    content: attr(data-note);
+.key::after {
+    content: attr(data-key);
     position: absolute;
     bottom: 10px;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 12px;
+    font-size: 14px;
     color: #333;
+}
+
+.black-key::after {
+    content: attr(data-key) !important;
+    font-size: 14px;
+    color: #fff;
+    bottom: 10px;
 }
 
 /* 添加这个选择器来覆盖 C# 的标注 */
@@ -96,6 +103,16 @@ h1 {
     justify-content: center;
     max-width: 600px;
     width: 80%;
+}
+
+.chord-tag {
+    display: inline-block;
+    padding: 2px 8px;
+    margin: 0 4px;
+    background: #4CAF50;
+    color: white;
+    border-radius: 4px;
+    font-weight: bold;
 }
 
 .note-tag {

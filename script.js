@@ -1,5 +1,20 @@
 // 创建复音合成器
-const synth = new Tone.PolySynth().toDestination();
+const synth = new Tone.PolySynth(Tone.FMSynth).toDestination();
+
+// 调整音色参数
+synth.set({
+    harmonicity: 2,
+    modulationIndex: 3,
+    envelope: {
+        attack: 0.02,
+        decay: 0.2,
+        sustain: 0.8,
+        release: 1
+    },
+    modulation: {
+        type: "triangle"
+    }
+});
 
 // 获取所有键
 const keys = document.querySelectorAll('.key');
@@ -10,9 +25,18 @@ const activeNotes = new Set();
 
 // 更新显示的音符
 function updateActiveNotes() {
-    activeNotesDiv.innerHTML = Array.from(activeNotes)
+    const notes = Array.from(activeNotes);
+    activeNotesDiv.innerHTML = notes
         .map(note => `<span class="note-tag">${note}</span>`)
         .join('');
+    
+    // 检测和弦
+    if (notes.length >= 2) {
+        const chord = Tonal.Chord.detect(notes);
+        if (chord.length > 0) {
+            activeNotesDiv.innerHTML += ` = <span class="chord-tag">${chord[0]}</span>`;
+        }
+    }
 }
 
 // 切换音符显示状态
