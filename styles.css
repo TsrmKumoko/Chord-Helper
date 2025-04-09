@@ -4,9 +4,12 @@ body {
     align-items: center;
     justify-content: center;
     min-height: 100vh;
+    height: 100vh;  /* 添加固定高度 */
     margin: 0;
     padding: 20px;
     background-color: #f5f5f5;
+    box-sizing: border-box;  /* 添加盒模型设置 */
+    overflow: hidden;  /* 防止出现滚动条 */
 }
 
 h1 {
