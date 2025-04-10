@@ -51,7 +51,7 @@ function updateActiveNotes() {
     }
 
     // 根据是否有音符来设置清除按钮的禁用状态
-    // clearBtn.disabled = notes.length === 0;
+    clearBtn.disabled = notes.length === 0;
 }
 
 // 切换音符显示状态
@@ -120,6 +120,11 @@ document.addEventListener('keyup', (e) => {
         synth.triggerRelease([note]);
         activeNotes.delete(note);  // 松开键时直接删除音符
         updateActiveNotes();
+        
+        // 当没有任何音符时，释放所有声音
+        if (activeNotes.size === 0) {
+            synth.releaseAll();
+        }
     }
 });
 
@@ -139,7 +144,7 @@ muteBtn.addEventListener('click', () => {
 });
 
 const clearBtn = document.getElementById('clear-btn');
-// clearBtn.disabled = true;  // 设置初始状态为禁用
+clearBtn.disabled = true;  // 设置初始状态为禁用
 
 clearBtn.addEventListener('click', () => {
     // 清除所有激活的音符
@@ -147,9 +152,9 @@ clearBtn.addEventListener('click', () => {
     // 释放所有按键的声音
     synth.releaseAll();
     // 移除所有键的激活状态
-    // document.querySelectorAll('.key.active').forEach(key => {
-    //     key.classList.remove('active');
-    // });
+    document.querySelectorAll('.key.active').forEach(key => {
+        key.classList.remove('active');
+    });
     // 更新显示
     updateActiveNotes();
 });
