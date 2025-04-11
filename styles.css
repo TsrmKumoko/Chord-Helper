@@ -84,6 +84,7 @@ h1 {
     width: 45px;
     height: 150px;
     border: 1px solid #000;
+    margin: 0 -1px;
     background: white;
     cursor: pointer;
     position: relative;
