@@ -1,20 +1,40 @@
-// 创建复音合成器
-const synth = new Tone.PolySynth(Tone.FMSynth).toDestination();
-
-// 调整音色参数
-synth.set({
-    harmonicity: 2,
-    modulationIndex: 3,
-    envelope: {
-        attack: 0.02,
-        decay: 0.2,
-        sustain: 0.8,
-        release: 1
+// 创建钢琴音色
+const synth = new Tone.Sampler({
+    urls: {
+        "A0": "A0.mp3",
+        "C1": "C1.mp3",
+        "D#1": "Ds1.mp3",
+        "F#1": "Fs1.mp3",
+        "A1": "A1.mp3",
+        "C2": "C2.mp3",
+        "D#2": "Ds2.mp3",
+        "F#2": "Fs2.mp3",
+        "A2": "A2.mp3",
+        "C3": "C3.mp3",
+        "D#3": "Ds3.mp3",
+        "F#3": "Fs3.mp3",
+        "A3": "A3.mp3",
+        "C4": "C4.mp3",
+        "D#4": "Ds4.mp3",
+        "F#4": "Fs4.mp3",
+        "A4": "A4.mp3",
+        "C5": "C5.mp3",
+        "D#5": "Ds5.mp3",
+        "F#5": "Fs5.mp3",
+        "A5": "A5.mp3",
+        "C6": "C6.mp3",
+        "D#6": "Ds6.mp3",
+        "F#6": "Fs6.mp3",
+        "A6": "A6.mp3",
+        "C7": "C7.mp3",
+        "D#7": "Ds7.mp3",
+        "F#7": "Fs7.mp3",
+        "A7": "A7.mp3",
+        "C8": "C8.mp3"
     },
-    modulation: {
-        type: "triangle"
-    }
-});
+    release: 1,
+    baseUrl: "https://tonejs.github.io/audio/salamander/"
+}).toDestination();
 
 // 获取所有键
 const keys = document.querySelectorAll('.key');
@@ -69,9 +89,11 @@ const keyMap = {
     // C3 八度 (Z-M)
     'z': 'C3', 's': 'C#3', 'x': 'D3', 'd': 'D#3', 'c': 'E3',
     'v': 'F3', 'g': 'F#3', 'b': 'G3', 'h': 'G#3', 'n': 'A3',
-    'j': 'A#3', 'm': 'B3', ',': 'C4',
+    'j': 'A#3', 'm': 'B3', ',': 'C4', 'l': 'C#4', '.': 'D4',
+    ';': 'D#4', '/': 'E4',
     
     // C4 八度 (E-P)
+    'q': 'A3', '2': 'A#3', 'w': 'B3',
     'e': 'C4', '4': 'C#4', 'r': 'D4', '5': 'D#4', 't': 'E4',
     'y': 'F4', '7': 'F#4', 'u': 'G4', '8': 'G#4', 'i': 'A4',
     '9': 'A#4', 'o': 'B4', 'p': 'C5'
